@@ -1,0 +1,1014 @@
+@import reset
+@import font-face
+@import objects
+@import colors
+@import animate
+
++font-face('Gilroy', 'fonts/Gilroy-ExtraBold', '', 800)
++font-face('Gilroy', 'fonts/Gilroy-Light', '', 300)
++font-face('iconssba', 'fonts/iconssba', '')
+
+body, html
+  width: 100%
+  min-height: 100%
+  height: 100%
+
+.wrapper
+  width: 100%
+  height: 100vh
+  position: relative
+  background: #fff
+  overflow: hidden
+  font-family: 'Gilroy', sans-serif
+  font-weight: 300
+  font-size: 16px
+  line-height: normal
+
+h1
+  font-size: 4.375em
+  line-height: normal
+  font-weight: 700
+  color: $gray-text
+  margin: 0 0 5.967vh
+h2
+  font-size: 3.125em
+  line-height: normal
+  font-weight: 700
+  color: $gray-text
+  margin: 0 0 5.967vh
+h3
+  font-size: 2em
+  line-height: normal
+  font-weight: 700
+  color: $gray-text
+  margin: 0 0 3.086vh
+p
+  font-size: 1em
+  line-height: 1.875em
+  font-weight: 300
+  color: $gray-text
+a
+  outline: none
+
+/* HEADER */
+
+#header
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  z-index: 500
+  box-sizing: border-box
+  padding: 6.173vh 4.166vw
+  opacity: 1
+  transition: .2s opacity .2s ease
+  @extend .clearfix
+  .logo
+    float: left
+    width: 174px
+    height: 45px
+    position: relative
+    z-index: 550
+    .icon
+      color: $white-text
+      font-size: 45px
+      line-height: 1em
+      @extend .animate-links
+    &:hover
+      .icon
+        color: $white-text-hover
+  &.header-dark:not(.open)
+    .logo .icon
+      color: $gray-text
+      &:hover .icon
+        color: $gray-text-hover
+body:not(.ready) #header
+  opacity: 0
+
+.main-nav
+  float: right
+  .nav-wrapper
+    opacity: 0
+    visibility: hidden
+    position: fixed
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    background: rgba(0, 0, 0, 0.8)
+    padding: 18vh 4.166vw 5vh
+    nav
+      margin: 6.7vh 0 17vh
+      opacity: 0
+      ul
+        font-size: 0
+      li
+        display: inline-block
+        width: 300px
+        margin: 0 30px 8.74vh 0
+        &.clients-type-link
+          width: 630px
+          a
+            color: $white-text
+            display: inline-block
+            padding: 0 0 0 42px
+            position: relative
+            &:before
+              position: absolute
+              top: 50%
+              left: 0
+              transform: translate(0, -50%)
+              width: 1px
+              height: 22px
+              background: $yellow
+              content: ''
+            &:hover
+              color: $white-text-hover
+      a
+        color: $white-text
+        font-size: 28px
+        text-decoration: none
+        font-family: 'Gilroy', sans-serif
+        font-weight: 300
+        @extend .animate-links
+        &:hover
+          color: $white-text-hover
+      &.nav-bottom
+        a
+          color: $white-text-transparent
+          &:hover
+            color: $white-text-hover
+.open .main-nav .nav-wrapper
+    visibility: visible
+    +animation(0s, .6s, showNavBg)
+    nav
+      +animation(.6s, .5s, showNav)
+
+.intro-nav
+  @extend .main-nav
+  .nav-wrapper
+    opacity: 1
+    visibility: visible
+    .nav-center
+      opacity: 1
+      text-align: center
+      margin: 27vh 0 0
+      li.clients-type-link
+        width: auto
+        margin: 0 7.5% 60px
+
+.menu-burger
+  display: block
+  width: 50px
+  height: 38px
+  cursor: pointer
+  position: relative
+  z-index: 550
+  div
+    height: 6px
+    background: $white-text
+    margin: 0 0 8px
+    &:last-child, &:first-child
+      @extend .animate-links
+  &:hover
+    div
+      background: $white-text-hover
+.header-dark .menu-burger
+  div
+    background: $gray-text
+  &:hover div
+    background: $gray-text-hover
+
+.open .menu-burger
+  div
+    background: $white-text
+    opacity: 0
+    &:first-child
+      opacity: 1
+      transform: rotate(45deg) translate3d(6px, 14px, 0) translateZ(0)
+    &:last-child
+      opacity: 1
+      transform: rotate(-45deg) translate3d(6px, -14px, 0) translateZ(0)
+  &:hover div
+    background: $white-text-hover
+
+
+/* MAIN SLIDER */
+
+.slider-main
+  position: relative
+  .slide-main
+    height: 100vh
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    background-color: #000
+    position: relative
+    outline: none
+    .slide-title
+      color: $white-text
+      font-weight: 700
+      font-size: 2.25em
+      line-height: 1.333em
+      position: absolute
+      bottom: 25px
+      left: 608px
+      right: 150px
+  .slick-arrow
+    position: absolute
+    left: 0
+    bottom: 0
+    cursor: pointer
+    font-size: 0
+    background: $yellow
+    height: 80px
+    line-height: 80px
+    width: 120px
+    padding: 0
+    border: 0
+    outline: none
+    text-align: center
+    z-index: 2
+    @extend .animate-links
+    &:before
+      display: inline-block
+      vertical-align: middle
+      width: 15px
+      height: 15px
+      border-top: 1px solid #000
+      border-left: 1px solid #000
+      transform: rotate(-45deg)
+      transform-origin: center
+      content: ''
+    &:hover
+      background: $yellow-hover
+    &.slick-next
+      left: auto
+      right: 0
+      &:before
+        transform: rotate(135deg)
+  .slick-dots
+    position: absolute
+    left: 216px
+    bottom: 0
+    font-size: 0
+    width: 288px
+    display: table
+    li
+      display: table-cell
+      text-align: center
+      vertical-align: middle
+      margin: 0
+      height: 80px
+      line-height: 80px
+      button
+        vertical-align: middle
+        display: inline-block
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        border: 0
+        background: #dcdcdc
+        font-size: 0
+        padding: 0
+        outline: none
+        cursor: pointer
+        @extend .animate-links
+        &:hover
+          background: $white-text-hover
+      &.slick-active button
+        background: $yellow
+
+
+/* PAGE SERTIFICATES */
+
+.content
+  @extend .clearfix
+.right-col-content
+  position: absolute
+  right: 0
+  top: 0
+  width: 53.125%
+  height: 100vh
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+  .content-holder
+    background: $bg-gray
+    height: 100%
+    padding: 16.46vh 0 0
+    box-sizing: border-box
+    display: flex
+    flex-direction: column
+    width: 100%
+    transition: .4s width .4s ease
+    *
+      color: #000
+.ready .right-col-content .content-holder
+  width: 0
+.ready .right-col-content.show .content-holder
+  width: 100%
+  transition: .4s width 0s ease
+.left-col-content
+  .tab-content
+    position: absolute
+    width: auto
+    height: auto
+    left: 46.8452%
+    right: 0
+    top: 16.46vh
+    bottom: 0
+    z-index: 11
+  > .content-holder
+    opacity: 1
+    transition: .4s opacity .5s ease
+body:not(.ready) .left-col-content > .content-holder
+  opacity: 0
+.tab-content
+  width: 100%
+  height: 100%
+  padding: 6.5vh 20px
+  background: #fff
+  font-size: 16px
+  display: none
+  position: relative
+  overflow-y: auto
+  box-sizing: border-box
+  flex: 1 1 auto
+  .tab-holder
+    max-width: 690px
+    height: auto
+    padding: 5.967vh 3.646vw 1vh
+    box-sizing: border-box
+    position: relative
+    margin: 0 auto
+    &:after
+      position: absolute
+      left: 0
+      top: 0
+      width: 10px
+      height: 10px
+      background: $yellow
+      content: ''
+  &.active
+    opacity: 1
+    visibility: visible
+    bottom: 0
+.left-col-content
+  height: 100vh
+  margin: 0 53.125% 0 0
+  background: $bg-gray
+  box-sizing: border-box
+  padding: 16.46vh 4.166vw 5.144vh
+  display: flex
+  flex-direction: column
+  h3
+    margin: 7.185vh 0 6.365vh
+  .content-holder
+    flex: 1 0 auto
+    p
+      color: #000
+      a
+        color: $gray-text
+        text-decoration: none
+        @extend .animate-links
+        &:hover
+          text-decoration: none
+          color: $gray-text-hover
+.tabs-navigation
+  font-size: 0
+  margin: 5.76vh 0 0 -4.166vw
+  h3
+    font-size: 32px
+    line-height: normal
+    margin: 0 0 20px 4.166vw
+    padding: 0
+  .tabs-nav-item
+    display: inline-block
+    width: 33.333%
+    vertical-align: top
+    box-sizing: border-box
+    padding: 0 0 4.115vh 2.083vw
+    > a
+      display: block
+      height: 21.19vh
+      line-height: 21.19vh
+      text-align: center
+      position: relative
+      text-decoration: none
+      @extend .animate-links
+      &:before
+        position: absolute
+        top: 0
+        left: 0
+        width: 0
+        height: 0
+        background: $yellow
+        transition: all .3s ease
+        content: ''
+      img
+        display: inline-block
+        max-width: 100%
+        max-height: 100%
+        vertical-align: middle
+      .img-hover
+        display: none
+      span
+        font-size: 16px
+        line-height: 1.875em
+        color: #000
+        text-decoration: none
+        text-align: left
+        width: 100%
+        box-sizing: border-box
+        display: inline-block
+        padding: 10px 0 10px 2.083vw
+        vertical-align: middle
+        word-break: break-word
+      &:hover, &.active
+        background-color: #fff
+        &:before
+          width: 10px
+          height: 10px
+          transition: .3s all .25s ease
+        .img-hover-hide
+          display: none
+        .img-hover
+          display: inline-block
+      .icon
+        display: inline-block
+        color: #000
+        font-size: 55px
+        line-height: 1em
+        padding: 0 0 15px
+        font-weight: normal
+  &.tabs-navigation-2col, &.tabs-navigation-1col
+    columns: 2
+    margin: 5.76vh -1.562vw 0 -4.166vw
+    .tabs-nav-item
+      display: inline-block
+      width: 100%
+      box-sizing: border-box
+      padding: 0 0 0 2.083vw
+      a
+        width: auto
+        height: auto
+        font-size: 16px
+        line-height: 2.25em
+        padding: 1.85vh 1.562vw 1.85vh 2.083vw
+        color: #000
+        text-align: left
+  &.tabs-navigation-1col
+    columns: 1
+  .tabs-bav-col50
+    display: inline-block
+    width: 50%
+    vertical-align: top
+.bottom-content
+  flex: 0 0 auto
+  opacity: 1
+  transition: .4s opacity .8s ease
+body:not(.ready) .bottom-content
+  opacity: 0
+
+#map
+  position: absolute !important
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+.map-label
+  margin: 40px 0 0
+  text-align: center
+  color: #414141
+  width: 350px
+  font-family: 'Gilroy', sans-serif
+  font-weight: 300
+  font-size: 16px
+  line-height: 30px
+
+.vertical-slider
+  .slick-list, .slick-track
+    height: 100% !important
+  .slick-slide
+    height: auto
+    display: flex
+
+.callcenter-slider
+  height: 100%
+  max-width: 580px
+  margin: 0 auto
+  .slick-slide
+    outline: none
+    height: 33.333%
+    display: flex
+    & > div
+      vertical-align: middle
+      margin: auto
+  .call-item
+    outline: none
+    padding: 0 0 8.23vh
+    width: 100% !important
+    @extend .clearfix
+    .photo
+      float: left
+      margin: 0 90px 0 0
+    .info
+      margin: 0 0 0 250px
+      p
+        line-height: (30px/16px)*1em
+      a
+        text-decoration: none
+
+.vertical-slider
+  max-width: 580px
+  margin: 0 auto
+  .history-slider, .bx-wrapper, .bx-viewport
+    height: 100% !important
+  .bx-wrapper
+    position: relative
+  .bx-pager
+    position: absolute
+    right: -80px
+    top: 50%
+    transform: translate(0, -50%)
+    .bx-pager-item
+      font-size: 0
+      height: 8px
+      margin: 4.115vh 0
+      a
+        display: block
+        font-size: 0
+        background: #dcdcdc
+        border: 0
+        width: 8px
+        height: 8px
+        padding: 0
+        border-radius: 50%
+        outline: none
+        cursor: pointer
+        &:hover, &.active
+          border-radius: 50%
+          background: $yellow
+
+.form-email
+  width: 100%
+  max-width: 392px
+  margin: auto
+  padding: 0 14.26vw 0 5vw
+  .button-wrap
+    position: absolute
+    right: 0
+    bottom: 0
+
+.button
+  border: 0
+  outline: none
+  cursor: pointer
+  text-decoration: none
+  color: #000
+  font-size: 16px
+  line-height: 1em
+  font-family: 'Gilroy', sans-serif
+  font-weight: 300
+  border-radius: 0
+  margin: 0
+  padding: 32px 52px
+  @extend .animate-links
+  &.button-yellow
+    background: $yellow
+    &:hover
+      background: $yellow-hover
+
+.field-wrapper
+  position: relative
+  margin: 0 0 (42/972)*100vh
+  input, textarea
+    outline: none
+    border: 0
+    border-bottom: 1px solid #dcdcdc
+    color: #000
+    font-size: 16px
+    line-height: 30px/16px*1em
+    font-family: 'Gilroy', sans-serif
+    font-weight: 300
+    width: 100%
+    padding: (30/972)*100vh 0
+  textarea
+    height: 111px
+    resize: none
+  label
+    position: absolute
+    left: 0
+    top: (30/972)*100vh
+    color: #000
+    font-size: 16px
+    line-height: 30px/16px*1em
+    font-family: 'Gilroy', sans-serif
+    font-weight: 300
+    z-index: 10
+    margin: 0
+    cursor: pointer
+    transition: all .2s ease
+  &.focused label
+    font-size: 12px
+    color: #909090
+    top: 3px
+  .msg-error
+    display: none
+  &.error
+    input, textarea
+      border-bottom-color: #cb0100
+    .extra-label
+      opacity: 0
+    .msg-error
+      display: block
+      position: absolute
+      right: auto
+      left: 100%
+      top: 50%
+      width: 11.875vw
+      padding: 0 0 0 2.5vw
+      margin: -8px 0 0
+      font-size: 1em
+      line-height: (30/16)*1em
+      &:before
+        position: absolute
+        left: 0
+        top: 8px
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        background: $yellow
+        content: ''
+  .js-field-resource, .js-field-role
+    display: none
+
+.history-item
+  @extend .clearfix
+  padding: 0 0 6.17vh
+  width: 100% !important
+  .date
+    font-size: (30/16)*1em
+    font-weight: 700
+    line-height: normal
+    float: left
+    width: 152px
+    padding: 0 20px 0 0
+    box-sizing: border-box
+  .description
+    margin: 0 0 0 152px
+    padding: 8px 0 0
+    font-size: 1em
+    line-height: (30/16)*1em
+
+@media only screen and (max-height: 800px), only screen and (max-width: 890px)
+  h1
+    font-size: 3.15em
+    margin: 0 0 3.5vh
+  h2
+    font-size: 2.5em
+    margin: 0 0 3.6vh
+  #header
+    padding: 3.8vh 3vw
+  .main-nav .nav-wrapper, .intro-nav .nav-wrapper
+    padding: 15.125vh 3vw 5vh
+  .main-nav .nav-wrapper nav, .intro-nav .nav-wrapper nav
+    margin: 6.7vh 0 12vh
+    li
+      margin: 0 20px 4vh 0
+      width: 270px
+      &.clients-type-link
+        width: 560px
+  .right-col-content .content-holder
+    padding: 13.125vh 0 0
+  .left-col-content
+    padding: 13.125vh 3vw 3vh
+    .tab-content
+      top: 13.125vh
+  .tabs-navigation
+    margin: 4.5vh 0 0 -2.1vw
+    h3
+      margin: 0 0 20px 2.43vw
+      font-size: 28px
+    &.tabs-navigation-1col, &.tabs-navigation-1col
+      margin: 4.5vh -1.562vw 0 -2.53vw
+      .tabs-nav-item
+        padding: 0 0 0 1vw
+    .tabs-nav-item
+      padding: 0 0 2vh 1vw
+      > a
+        min-height: 21.19vh
+        height: auto
+        .icon
+          font-size: 42px
+  .tabs-navigation.tabs-navigation-2col .tabs-nav-item a, .tabs-navigation.tabs-navigation-1col .tabs-nav-item a,
+  .tabs-navigation .tabs-nav-item > a span
+    line-height: 1.5em
+    min-height: 0
+  .callcenter-slider .call-item
+    padding: 0 0 4vh
+  .history-item
+    padding: 0 0 4vh
+@media only screen and (max-height: 800px) and (max-width: 1600px)
+  .tabs-navigation.tabs-navigation-2col .tabs-nav-item a, .tabs-navigation.tabs-navigation-1col .tabs-nav-item a
+    padding: 1.4vh 1.2vw 1.4vh 1.53vw
+@media screen and (max-width: 1600px)
+  .tabs-navigation .tabs-nav-item > a
+    span
+      padding: 8px .1vw 8px 1.1vw
+    img
+      max-width: 88%
+      max-height: 88%
+  .vertical-slider .bx-pager
+    right: -40px
+@media only screen and (max-height: 700px)
+  .field-wrapper
+    margin: 0 0 5vh
+    label
+      top: 9px
+    &.focused label
+      top: -9px
+    input, textarea
+      padding: 9px 0
+      line-height: 1.5em
+    &.error .msg-error
+      width: 10.875vw
+      padding: 0 0 0 1.5vw
+      font-size: .875em
+      line-height: 1.3em
+@media only screen and (max-width: 1340px)
+  .form-email
+    max-width: 350px
+    padding: 0 14.26vw 0 2vw
+  .field-wrapper
+    &.error .msg-error
+      width: 12.875vw
+      padding: 0 0 0 1.5vw
+      font-size: .875em
+      line-height: 1.3em
+  .callcenter-slider .call-item .info p
+    line-height: 1.5em
+  .slider-main
+    .slide-main .slide-title
+      font-size: 1.75em
+      left: 480px
+    .slick-dots
+      left: 130px
+    .slick-arrow
+      width: 100px
+@media only screen and (max-width: 1280px)
+  .wrapper,
+  .tab-content
+    font-size: 14px
+  .tabs-navigation .tabs-nav-item > a span,
+  .tabs-navigation.tabs-navigation-2col .tabs-nav-item a,
+  .tabs-navigation.tabs-navigation-1col .tabs-nav-item a
+    font-size: 14px
+  .tabs-navigation .tabs-nav-item > a
+    .icon
+      font-size: 28px
+      padding: 0 0 10px
+    span
+      display: block
+      padding: 4vh .1vw 1vh 1.1vw
+  #header .logo
+    height: 36px
+    .icon
+      font-size: 36px
+  .menu-burger
+    width: 42px
+    height: 30px
+    div
+      height: 5px
+      margin: 0 0 6px
+  .open .menu-burger div:first-child
+    transform: rotate(45deg) translate3d(2px, 10px, 0) translateZ(0)
+  .main-nav .nav-wrapper nav li, .intro-nav .nav-wrapper nav li, .intro-nav .nav-wrapper nav li
+    width: 240px
+  .main-nav .nav-wrapper nav li.clients-type-link,
+  .intro-nav .nav-wrapper nav li.clients-type-link
+    width: 500px
+    a
+      padding: 0 0 0 16px
+  p
+    font-size: 14px
+  .main-nav .nav-wrapper nav a, .intro-nav .nav-wrapper nav a
+    font-size: 20px
+  .form-email
+    max-width: 500px
+    box-sizing: border-box
+  .callcenter-slider .call-item
+    .photo
+      width: 115px
+      margin: 0 25px 0 0
+      img
+        max-width: 100%
+    .info
+      margin: 0 0 0 140px
+  .map-label
+    margin-top: 20px !important
+    font-size: 14px
+    line-height: 22px
+  .vertical-slider
+    .bx-wrapper
+      padding: 0 25px 0 0
+      box-sizing: border-box
+    .bx-pager
+      right: 0
+  .tab-content .tab-holder
+    padding: 0
+    position: static
+@media only screen and (max-width: 960px)
+  .slider-main
+    .slick-dots
+      display: none
+    .slide-main .slide-title
+      left: 150px
+@media only screen and (max-width: 890px)
+  h1
+    margin: 3.5vh 0
+  #header
+    padding: 3.8vh 20px
+    &.header-dark
+      background: $bg-gray
+  .wrapper
+    height: auto
+  .main-nav .nav-wrapper, .intro-nav .nav-wrapper
+    overflow-y: auto
+    padding: 15vh 20px 3vh
+  .main-nav .nav-wrapper nav, .intro-nav .nav-wrapper nav
+    margin: 0 0 35px
+    li
+      width: 100%
+      box-sizing: border-box
+      margin: 0 0 15px
+      &.clients-type-link
+        width: 100%
+  .bottom-content
+    background: $bg-gray
+    padding: 0 20px
+    p
+      display: none
+  .right-col-content
+    position: static
+    height: 62.5vw
+    max-height: 340px
+    width: 100%
+    background-position: 50% 20%
+    .content-holder
+      opacity: 0
+  .left-col-content
+    height: auto
+    min-height: 100vh
+    margin: 0
+    padding: 13.125vh 0 0
+    .tab-content
+      position: static
+      clear: both
+      padding: 38px 20px
+  .tabs-navigation
+    padding: 20px 0 0
+    margin: 0
+    background: $bg-gray
+    h3
+      margin: 0 0 20px 20px
+    &.tabs-navigation-1col,
+    &.tabs-navigation-2col
+      margin: 0
+      padding: 20px 0 0
+      columns: 1
+      .tabs-nav-item
+        padding: 0
+        > a
+          padding: 13px 45px 12px 20px
+    .tabs-bav-col50
+      width: 100%
+      display: block
+      margin: 0 0 20px
+      &:last-child
+        margin: 0
+    .tabs-nav-item
+      padding: 0
+      width: auto
+      height: auto
+      min-height: 0
+      display: block
+      > a
+        padding: 9px 45px 9px 20px
+        min-height: 0
+        line-height: normal
+        transition: .3s all ease
+        &:before
+          right: 24px
+          left: auto
+          top: 50%
+          display: block
+          background: transparent
+          width: 10px
+          height: 10px
+          margin: -8px 0 0
+          border-top: 1px solid #000
+          border-right: 1px solid #000
+          transform: rotate(135deg)
+        &:not(.active):hover
+          background: transparent
+        &.active:before
+          background: #fff
+          transform: rotate(-45deg)
+          margin: -2px 0 0
+        img
+          max-height: 45px
+        span
+          padding: 0
+        .icon
+          padding: 0
+          margin: 0 24px 0 0
+          vertical-align: middle
+        br
+          display: none
+  .vertical-slider
+    height: auto !important
+  .form-email
+    padding: 0
+    .button-wrap
+      position: static
+  .button
+    padding: 18px 52px
+  .field-wrapper
+    margin: 0 0 30px
+    &.error .msg-error
+      top: auto
+      right: auto
+      left: auto
+      position: relative
+      width: auto
+      margin: 10px 0 0 10px
+      br
+        display: none
+      &:before
+        left: -10px
+        top: 4px
+  #map
+    position: relative !important
+    top: auto
+    left: auto
+    right: auto
+    bottom: auto
+    height: 85vw
+    max-height: 340px
+    margin: -38px -20px
+@media only screen and (max-width: 760px)
+  #header
+    padding: 20px
+    .logo
+      height: auto
+      .icon
+        font-size: 18px
+  .menu-burger
+    width: 22px
+    height: 20px
+    div
+      height: 3px
+      margin: 0 0 4px
+  .main-nav .nav-wrapper, .intro-nav .nav-wrapper
+    padding: 80px 20px 20px
+  .open .menu-burger div
+    &:first-child
+      transform: rotate(45deg) translate3d(0px, 6px, 0) translateZ(0)
+    &:last-child
+      transform: rotate(-45deg) translate3d(4px, -10px, 0) translateZ(0)
+  .left-col-content
+    padding: 60px 0 0
+  h1
+    font-size: 24px
+    margin: 30px 0
+  h2
+    font-size: 1.5em
+  .right-col-content
+    background-position: center center
+  .left-col-content .tab-content
+    padding: 25px 20px
+  .callcenter-slider .call-item
+    .photo
+      width: 80px
+      margin: 0 30px 0 0
+      img
+        max-width: 80px
+    .info
+      margin: 0 0 0 110px
+  .history-item .date
+    font-size: 1.5em
+    width: 90px
+  .history-item .description
+    margin: 0 0 0 90px
+    padding: 2px 0 0
+  .slider-main
+    .slick-arrow
+      width: 62px
+      height: 62px
+      line-height: 62px
+    .slide-main .slide-title
+      bottom: 85px
+      left: 20px
+      right: 20px

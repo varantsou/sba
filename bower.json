@@ -1,0 +1,14 @@
+{
+  "name": "sba",
+  "description": "html markup",
+  "license": "ISC",
+  "homepage": "",
+  "directory": "src/libs",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "slick-carousel": "^1.8.1",
+    "markerwithlabel": "*",
+    "bxslider-4": "^4.2.12"
+  },
+  "main": ""
+}

@@ -1,0 +1,50 @@
+=animation($delay, $duration, $animation)
+  -webkit-animation-delay: $delay
+  -webkit-animation-duration: $duration
+  -webkit-animation-name: $animation
+  -webkit-animation-fill-mode: forwards
+  -moz-animation-delay: $delay
+  -moz-animation-duration: $duration
+  -moz-animation-name: $animation
+  -moz-animation-fill-mode: forwards
+  -o-animation-delay: $delay
+  -o-animation-duration: $duration
+  -o-animation-name: $animation
+  -o-animation-fill-mode: forwards
+  animation-delay: $delay
+  animation-duration: $duration
+  animation-name: $animation
+  animation-fill-mode: forwards
+
+=mykeyframe($animation_name)
+  @-webkit-keyframes #{$animation_name}
+    @content
+
+  @-moz-keyframes #{$animation_name}
+    @content
+
+  @-o-keyframes #{$animation_name}
+    @content
+
+  @keyframes #{$animation_name}
+    @content
+
+/* main nav animation */
+
++mykeyframe(showNavBg)
+  0%
+    opacity: 0
+    z-index: 999
+  75%
+    z-index: 999
+  100%
+    opacity: 1
+    z-index: 100
+
++mykeyframe(showNav)
+  0%
+    opacity: 0
+    padding-top: 9vh
+  100%
+    opacity: 1
+    padding-top: 0
